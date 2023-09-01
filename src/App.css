@@ -13,7 +13,7 @@ body {
 }
 
 @media (max-width: 1000px) {
-  body{
+  .App{
     margin: auto 10%;
   }
 }
