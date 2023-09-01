@@ -1,0 +1,232 @@
+body {
+  background-color: #0F172A;
+  color: white;
+  margin: auto 25%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  padding: 5px 15px;
+  gap: 3px;
+  border-radius: 15px;
+}
+
+.input-container .bash-text {
+  font-size: 1rem;
+  color: white;
+}
+
+.input-container .bash-text .user {
+  color: #E879F9;
+}
+
+.input-container .bash-text .vm {
+  color: #2DD4BF;
+}
+
+.input-container .bash-text .char {
+  color: #A78BFA;
+}
+
+.input-container input[type=text].input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.input {
+  width: 60%;
+  font-size: 1.2rem;
+  color: #FFCC70;
+}
+
+.Btn {
+  width: 100px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.button {
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  height: 35px;
+  width: 100px;
+  border: none;
+  background: #ff362b34;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 14px;
+  color: #FF342B;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #ff362b52;
+}
+
+.button:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.text {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgb(2, 153, 153);
+}
+
+.svgIcon {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: teal;
+  border: none;
+}
+
+.Btn:hover .text {
+  background-color: rgb(0, 133, 133);
+}
+
+.Btn:hover .svgIcon {
+  background-color: rgb(0, 105, 105);
+}
+
+.opt-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-container{
+  width: 200px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4c00ff;
+  background-image: linear-gradient(160deg, #4900f5 0%, #80D0C7 100%);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  cursor: pointer;
+}
+
+.radio-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  transform: translateY(-50%) scale(0.9);
+  border: 5px solid #A78BFA;
+  color: #A78BFA;
+}
+
+.radio-button__input:checked + .radio-button__label {
+  color: #A78BFA;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: translateY(-50%) scale(1.2);
+  border-color: #A78BFA;
+  box-shadow: 0 0 10px #4c8bf580;
+}
+
