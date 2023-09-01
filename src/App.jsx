@@ -21,7 +21,7 @@ function App() {
 	}, [length, numbersAllowed, charactersAllowed, setPassword]);
 
 	return (
-		<>
+		<div className="App">
 			<h1 className='text-center text-4xl'>Generate Your Password</h1>
 			<div className='flex'>
 				<div className='input-container'>
@@ -29,7 +29,7 @@ function App() {
 						<span className='user'>password</span>
 						<span className='vm'>@passGenApp</span>:<span className='char'>~</span>$
 					</p>
-					<input className='input' placeholder='obtain password ' type='text' />
+					<input className='input' placeholder='click "Retry" to obtain new password ' type='text' readOnly />
 					<button className='button'>
 						<span className='lable'>Retry</span>
 						<svg
@@ -45,7 +45,6 @@ function App() {
 							</g>
 						</svg>
 					</button>
-
 					<button className='Btn'>
 						<span className='text'>Copy</span>
 						<span className='svgIcon'>
@@ -82,7 +81,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 
