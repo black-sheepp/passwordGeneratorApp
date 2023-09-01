@@ -1,11 +1,16 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
+import { useRef } from "react";
 
 function App() {
-	const [length, setLength] = useState(8);
+	const [length, setLength] = useState(12);
 	const [numbersAllowed, setNumbersAllowed] = useState(false);
 	const [charactersAllowed, setCharactersAllowed] = useState(false);
 	const [password, setPassword] = useState("");
+  const [reGen, setReGen] = useState(true)
+
+  // ref hook
+  const passwordRef = useRef(null)
 
 	const passwordGenerator = useCallback(() => {
 		let pass = "";
@@ -15,13 +20,28 @@ function App() {
 
 		for (let i = 1; i <= length; i++) {
 			let char = Math.floor(Math.random() * str.length + 1);
-			pass = str.charAt(char);
+			pass += str.charAt(char);
 		}
 		setPassword(pass);
-	}, [length, numbersAllowed, charactersAllowed, setPassword]);
+	}, [length, numbersAllowed, charactersAllowed]);
+
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    window.navigator.clipboard.writeText(password);
+  },[password])
+
+  useEffect(() => {
+    document.title = "Password Generator";
+    // This code runs after the component is first rendered.
+  }, []);
+  
+
+  useEffect(()=>{
+    passwordGenerator();
+  },[length,numbersAllowed,charactersAllowed,reGen])
 
 	return (
-		<div className="App">
+		<div className='App'>
 			<h1 className='text-center text-4xl'>Generate Your Password</h1>
 			<div className='flex'>
 				<div className='input-container'>
@@ -29,8 +49,17 @@ function App() {
 						<span className='user'>password</span>
 						<span className='vm'>@passGenApp</span>:<span className='char'>~</span>$
 					</p>
-					<input className='input' placeholder='click "Retry" to obtain new password ' type='text' readOnly />
-					<button className='button'>
+					<input
+						className='input'
+						type='text'
+						value={password}
+						placeholder='click "Retry" to obtain new password '
+						readOnly
+            ref={passwordRef}
+					/>
+
+					{/* Regenerate Password - Button */}
+					<button className='button' onClick={()=>{ setReGen((prev)=>!prev)}}>
 						<span className='lable'>Retry</span>
 						<svg
 							className='svg-icon'
@@ -45,7 +74,9 @@ function App() {
 							</g>
 						</svg>
 					</button>
-					<button className='Btn'>
+
+					{/* Copy Password - Button */}
+					<button className='Btn' onClick={copyPasswordToClipboard}>
 						<span className='text'>Copy</span>
 						<span className='svgIcon'>
 							<svg
@@ -59,21 +90,53 @@ function App() {
 					</button>
 				</div>
 			</div>
+
+			{/* SLIDER */}
 			<div className='opt-container'>
 				<div className=' text-white slide-container'>
-					<p>Length (8)</p>
-					<input id='myRange' className='slider' defaultValue={50} max={100} min={0} type='range' />
+					<p>Length: {length}</p>
+					<input
+						id='myRange'
+						className='slider'
+						max={30}
+						min={6}
+						type='range'
+						value={length}
+						onChange={(e) => {
+							setLength(e.target.value);
+						}}
+					/>
 				</div>
+
+				{/* Numbers and Characters Select */}
 				<div className='radio-buttons-container'>
 					<div className='radio-button'>
-						<input name='radio-group' id='radio2' className='radio-button__input' type='radio' />
+						<input
+							name='radio-group'
+							id='radio2'
+							className='radio-button__input'
+							type='checkbox'
+							defaultChecked={numbersAllowed}
+							onChange={() => {
+								setNumbersAllowed((prev) => !prev);
+							}}
+						/>
 						<label htmlFor='radio2' className='radio-button__label'>
 							<span className='radio-button__custom' />
 							Numbers
 						</label>
 					</div>
 					<div className='radio-button'>
-						<input name='radio-group' id='radio1' className='radio-button__input' type='radio' />
+						<input
+							name='radio-group'
+							id='radio1'
+							className='radio-button__input'
+							type='checkbox'
+							defaultChecked={charactersAllowed}
+							onChange={() => {
+								setCharactersAllowed((prev) => !prev);
+							}}
+						/>
 						<label htmlFor='radio1' className='radio-button__label'>
 							<span className='radio-button__custom' />
 							Characters
