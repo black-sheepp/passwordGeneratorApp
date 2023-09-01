@@ -6,6 +6,9 @@ body {
   margin: auto 25%;
   font-family: 'Raleway', sans-serif;
   font-family: 'REM', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .App{
